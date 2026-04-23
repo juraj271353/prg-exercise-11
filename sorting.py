@@ -50,9 +50,12 @@ def bubble_sort(values):
     return numbers
 
 
+def main():
+    print(selection_sort([5, 1, 4, 2, 8]))
+    print(selection_sort(random_numbers(20)))
 
-print(selection_sort([5, 1, 4, 2, 8]))
-print(selection_sort(random_numbers(20)))
+    print(bubble_sort([5, 1, 4, 2, 8]))
+    print(bubble_sort(random_numbers(20)))
 
-print(bubble_sort([5, 1, 4, 2, 8]))
-print(bubble_sort(random_numbers(20)))
+if __name__ == "__main__":
+    main()
