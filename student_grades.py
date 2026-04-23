@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from sorting import random_numbers
 
 class StudentsGrades:
     def __init__(self, scores):
@@ -37,6 +38,18 @@ class StudentsGrades:
         return results
 
 
+    def get_sorted(self):
+        scores = self.scores.copy()
+        n = len(scores)
+
+        for i in range(n):
+            for j in range(0, n - i - 1):
+                if scores[j] > scores[j + 1]:
+                    scores[j], scores[j + 1] = scores[j + 1], scores[j]
+
+        return scores
+
+
 def main():
     results = StudentsGrades([85, 42, 91, 67, 50, 73, 100, 38, 58])
 
@@ -55,6 +68,26 @@ def main():
     print(results.find(100))  # [6]
     print(results.find(50))  # [4]
     print(results.find(77))  # []
+
+    print(results.get_sorted())  # [38, 42, 50, 58, 67, 73, 85, 91, 100]
+    print(results.scores)  # [85, 42, 91, 67, 50, 73, 100, 38, 58]  ← beze změny
+
+
+    results = StudentsGrades([85, 42, 91, 67, 50, 73, 100, 38, 58])
+    print("Pocet studentu", results.count())
+
+    for i in range(results.count()):
+        points = results.get_by_index(i)
+        grade = results.get_grade(i)
+        print(f"Student {i}: {points} points- {grade}")
+
+    print("Studenti so 100 bodmi", results.find(100))
+
+    print("Zoradene vysledky", results.get_sorted())
+
+    random_results = StudentsGrades(random_numbers(30, 0, 100))
+    print(random_results.count())
+    print(random_results.get_sorted())
 
 
 if __name__ == "__main__":
